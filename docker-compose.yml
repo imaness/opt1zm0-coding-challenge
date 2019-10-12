@@ -1,10 +1,30 @@
-version: '3'
+version: '3.7'
 services:
   redis:
     image: redis
     ports:
      - "6379:6379"
-  #nginx:
-  #app:
+    networks:
+      - optizmo-network
+    volumes:
+      - .docker/redis/data:/data
+  # nodeapp:
+  #   build:
+  #     context: .
+  #     dockerfile: .docker/node.development.dockerfile
+  #   depends_on:
+  #    - redis
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #     - .:/var/www/optizmo
+  #   working_dir: /var/www/optizmo      
+  #   environment: 
+  #     - NODE_ENV=development
+  #   networks:
+  #     - optizmo-network
+networks:
+    optizmo-network:
+      driver: bridge
 
      
