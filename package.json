@@ -1,0 +1,37 @@
+{
+  "name": "optizmo-coding-challenge",
+  "version": "1.0.0",
+  "description": "Coding challenge for optizmo",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha 'test/**/*.js' --exit",
+    "test:watch": "mocha 'test/**/*.js' -w --exit",
+    "lint": "eslint \"**/*.js\""
+  },
+  "author": "Emmanuel Soriano",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "config": "^3.2.3",
+    "express": "^4.17.1",
+    "express-validator": "^6.2.0",
+    "faker": "^4.1.0",
+    "ioredis": "^4.14.1",
+    "lusca": "^1.6.1",
+    "morgan": "^1.9.1",
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-chai-friendly": "^0.4.1",
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.1",
+    "nyc": "^14.1.1",
+    "sinon": "^7.5.0",
+    "supertest": "^4.0.2"
+  }
+}
