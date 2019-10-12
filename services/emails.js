@@ -2,6 +2,7 @@ const config = require('config');
 const {
   isEmailValid,
   isEmailsValid,
+  toLowerCaseDomain,
 } = require('../utils/email');
 const {
   setKey,
@@ -9,7 +10,9 @@ const {
   getKey,
   getKeys,
 } = require('../database/redis');
-const { sortBy } = require('../utils/collection');
+const {
+  sortBy,
+} = require('../utils/collection');
 
 const collectionPrefix = config.get('Database.CollectionPrefixes.MasterEmail');
 
@@ -21,7 +24,7 @@ const addEmails = async (emailList) => {
   const keysToInsert = {};
 
   emailList.map((email) => {
-    keysToInsert[`${collectionPrefix}:0:${email}`] = email;
+    keysToInsert[`${collectionPrefix}:0:${toLowerCaseDomain(email)}`] = toLowerCaseDomain(email);
     return email;
   });
 
@@ -35,7 +38,7 @@ const addEmail = async (email) => {
     throw new Error('Not valid email.');
   }
 
-  await setKey(`${collectionPrefix}:0:${email}`, email);
+  await setKey(`${collectionPrefix}:0:${toLowerCaseDomain(email)}`, toLowerCaseDomain(email));
 
   return true;
 };
@@ -45,17 +48,17 @@ const getEmail = async (email) => {
     return new Error('Not valid email.');
   }
 
-  return getKey(`${collectionPrefix}:0:${email}`);
+  return getKey(`${collectionPrefix}:0:${toLowerCaseDomain(email)}`);
 };
 
 const getEmails = async (emails) => getKeys(emails);
 
 const matchEmailsToEmailDataStore = async (emailList, sortByFoundAndEmailValue = false) => {
-  const results = await getEmails(emailList.map((email) => `${collectionPrefix}:0:${email}`));
+  const results = await getEmails(emailList.map((email) => `${collectionPrefix}:0:${toLowerCaseDomain(email)}`));
 
   const emailListResults = emailList.map((emailValue, i) => ({
     email: emailValue,
-    found: (emailValue === results[i]),
+    found: (toLowerCaseDomain(emailValue) === results[i]),
   }));
 
   if (sortByFoundAndEmailValue) {

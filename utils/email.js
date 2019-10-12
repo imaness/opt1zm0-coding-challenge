@@ -10,7 +10,15 @@ const isEmailsValid = (emails) => {
   return true;
 };
 
+const toLowerCaseDomain = (email) => {
+  const emailSplitted = email.split('@');
+
+  emailSplitted[1] = emailSplitted[1].toLowerCase();
+  return emailSplitted.join('@');
+};
+
 module.exports = {
   isEmailValid,
   isEmailsValid,
+  toLowerCaseDomain,
 };

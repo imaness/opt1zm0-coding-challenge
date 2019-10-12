@@ -6,6 +6,7 @@ const {
   addEmails,
   matchEmailsToEmailDataStore,
 } = require('../../services/emails');
+const { toLowerCaseDomain } = require('../../utils/email');
 
 describe('Check if Mocha test is working ', () => {
   const test = 1;
@@ -39,6 +40,16 @@ describe('Email inserting and searching', async () => {
 
     const emailValue = await getEmail(testEmail);
     expect(emailValue).to.equal(testEmail);
+  });
+
+  it('Email domain should be case-insensitive', async () => {
+    const testEmail = 'testEmail@GMAIL.com';
+
+    const isSuccessInsert = await addEmail(testEmail);
+    expect(isSuccessInsert).to.equal(true);
+
+    const emailValue = await getEmail(testEmail);
+    expect(emailValue).to.equal(toLowerCaseDomain(testEmail));
   });
 
 
