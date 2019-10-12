@@ -14,6 +14,8 @@ const app = express();
 // Use  Compression
 app.use(compression());
 
+app.use(express.static('public'));
+
 // Add logging in dev
 app.use(logger('dev'));
 
@@ -27,7 +29,6 @@ app.disable('x-powered-by');
 // Primary app routes
 app.use('/', require('./controllers/home'));
 app.use('/api', require('./controllers/api'));
-
 
 if (!module.parent) {
   app.listen(port);

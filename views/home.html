@@ -1,34 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
-<head>
-  <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
 
-  <title>Home</title>
-  <div>
+    <title>Home</title>
+  </head>
 
-    Refresh Rate (Seconds): <input type="number" id="refresh_rate" />
-    <button>Start</button>
-    <br />
-    <form onsubmit="">
-        Add Email: <input required type="email" id="email_to_add" />
-        <button type="submit">Add</button>
-
-    </form>
-    <script>
-      function onAddEmailToSearch() {
-         
-
-      }
-    </script>
-    
-    
-  </div>
-
-</head>
-
-
-<body>
-  <script src="js/scripts.js"></script>
-</body>
+  <body>
+    <div>
+      <div>
+        <form onsubmit="onStartRoutine(event)">
+            <h2>Refresh Rate (Seconds): </h2>
+            <input type="number" min="5", max="300" value="10" required id="refresh_rate" />
+            <button id="startBtn" type="submit" ">Start</button>
+        </form>
+        <br />
+      </div>
+      <br />
+      <div><h2>Stop: </h2><button id="stopBtn" disabled onclick="onStopRoutine()">Stop</button></div>
+      <br />
+      <div>
+        <form onsubmit="onAddEmailToSearch(event)" , id="formEmailList">
+          Search Email:
+          <input required type="email" name="email_to_add" id="email_to_add" />
+          <button type="submit">Add</button>
+        </form>
+        <br />
+        <h2>Email list to search:</h2>
+        <ul id="emailList"></ul>
+      </div>
+      <br />
+      <div> 
+        <h3>Search Results:</h3>
+        <p id="emailSearchResult"></p>
+      </div>
+    </div>
+    <footer>
+      <script src="js/scripts.js"></script>
+      
+    </footer>
+  </body>
 </html>
