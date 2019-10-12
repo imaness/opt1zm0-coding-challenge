@@ -8,21 +8,32 @@ services:
       - optizmo-network
     volumes:
       - .docker/redis/data:/data
-  # nodeapp:
-  #   build:
-  #     context: .
-  #     dockerfile: .docker/node.development.dockerfile
-  #   depends_on:
-  #    - redis
-  #   ports:
-  #     - "8080:8080"
-  #   volumes:
-  #     - .:/var/www/optizmo
-  #   working_dir: /var/www/optizmo      
-  #   environment: 
-  #     - NODE_ENV=development
-  #   networks:
-  #     - optizmo-network
+  nodeapp:
+    build:
+      context: .
+      dockerfile: .docker/node.development.dockerfile
+    depends_on:
+     - redis
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/var/www/optizmo
+    working_dir: /var/www/optizmo      
+    environment: 
+      - NODE_ENV=development
+    networks:
+      - optizmo-network
+  nginx:
+    container_name: nginx
+    build: 
+      context: .
+      dockerfile: .docker/nginx.development.dockerfile
+    depends_on: 
+      - nodeapp
+    ports:
+      - "80:80"
+    networks:
+      - optizmo-network
 networks:
     optizmo-network:
       driver: bridge
