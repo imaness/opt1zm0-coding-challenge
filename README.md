@@ -12,6 +12,7 @@
 7. Web application requests is served and proxied through NGINX.
 8. Compression using gzip.
 9. Removed some security vulnerabilities.
+10. Data store is automatically seeded (For testing purposes)
 
 ## Deployment 
 
@@ -37,6 +38,20 @@ $ docker-compose build
 $ docker-compose up 
 ```
 
+3. To access the web interface: Go to "http://localhost"
+
+
+
+>For testing for purposes redis database is preloaded with 50,000 emails.
+
+
+### Sample email address in data store: ###
+1. Mervin.Graham@hotmail.com
+2. Kathryne.Raynor42@hotmail.com
+3. Willa_Jast48@hotmail.com
+
+
+
 ## Testing 
 
 To execute Unit and Integration test:
@@ -45,7 +60,7 @@ To execute Unit and Integration test:
 $ npm run test
 ```
 
-Testing requires Redis to be accessible. To be able to successfully run it, you need to expose redis service TCP port from **"6379"** to **"6379:6379"** in docker-compose.yml file.
+>Testing requires Redis to be accessible. To be able to successfully run it, you need to expose redis service TCP port from **"6379"** to **"6379:6379"** in docker-compose.yml file.
 
 
 ## Inspirations:
