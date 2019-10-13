@@ -45,7 +45,7 @@ $ docker-compose up
 >For testing for purposes redis database is preloaded with 50,000 emails.
 
 
-### Sample email address in data store: ###
+### Sample fake email addresses in data store: ###
 1. Mervin.Graham@hotmail.com
 2. Kathryne.Raynor42@hotmail.com
 3. Willa_Jast48@hotmail.com
